@@ -1,898 +1,734 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fr">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-<title>ACHRAF_NAPOLI PARTY</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>DRIP CLIENT</title>
 
 <style>
 *{
-  box-sizing:border-box;
   margin:0;
   padding:0;
-  touch-action:none;
-  user-select:none;
+  box-sizing:border-box;
+}
+
+html{
+  scroll-behavior:smooth;
 }
 
 body{
-  overflow:hidden;
-  background:#080b18;
-  font-family:Arial,sans-serif;
+  background:#020611;
   color:white;
+  font-family:Arial,Helvetica,sans-serif;
+  overflow-x:hidden;
 }
 
-canvas{
-  display:block;
-  width:100vw;
-  height:100vh;
-  background:linear-gradient(#111a38,#080b18);
-}
-
-.screen{
+body:before{
+  content:"";
   position:fixed;
   inset:0;
-  z-index:20;
-  display:flex;
-  flex-direction:column;
-  align-items:center;
-  justify-content:center;
-  background:rgba(3,5,15,.96);
-  text-align:center;
+  background:
+    radial-gradient(circle at 20% 20%,rgba(0,170,255,.12),transparent 30%),
+    radial-gradient(circle at 80% 40%,rgba(80,0,255,.10),transparent 30%);
+  pointer-events:none;
+  z-index:-1;
 }
 
-.hidden{
-  display:none!important;
+/* HEADER */
+
+header{
+  width:100%;
+  padding:15px 5%;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  border-bottom:1px solid #07355c;
+  background:rgba(2,6,17,.9);
+  position:sticky;
+  top:0;
+  z-index:100;
+  backdrop-filter:blur(12px);
+}
+
+.logoBox{
+  display:flex;
+  align-items:center;
+  gap:12px;
 }
 
 .logo{
-  font-size:38px;
+  width:55px;
+  height:55px;
+  border:2px solid #00cfff;
+  border-radius:15px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-size:27px;
   font-weight:900;
   color:#00eaff;
-  text-shadow:0 0 20px #00eaff;
+  text-shadow:0 0 12px #00eaff;
+  box-shadow:0 0 20px rgba(0,200,255,.5);
+  background:linear-gradient(145deg,#071c38,#020611);
 }
 
-.subtitle{
-  margin:10px 0 30px;
-  color:#a9cfff;
-  letter-spacing:3px;
+.logoText{
+  font-size:22px;
+  font-weight:900;
 }
 
-.menuBtn{
-  width:230px;
-  padding:15px;
-  margin:7px;
-  border:2px solid #00cfff;
-  border-radius:14px;
-  background:#09203b;
-  color:white;
-  font-size:18px;
-  font-weight:bold;
-  box-shadow:0 0 15px #0077aa;
+.logoText span{
+  color:#00d9ff;
+  text-shadow:0 0 10px #00d9ff;
 }
 
-#hud{
-  position:fixed;
-  top:10px;
-  left:10px;
-  right:10px;
-  z-index:5;
+nav{
   display:flex;
-  justify-content:space-between;
-  font-size:15px;
+  gap:25px;
+}
+
+nav a{
+  color:white;
+  text-decoration:none;
   font-weight:bold;
 }
 
-#stage{
-  position:fixed;
-  top:38px;
-  left:50%;
-  transform:translateX(-50%);
-  z-index:5;
+nav a:hover{
+  color:#00eaff;
+}
+
+.contact{
+  border:1px solid #16496d;
+  padding:10px 15px;
+  border-radius:12px;
   color:#00eaff;
   font-weight:bold;
 }
 
-#controls{
-  position:fixed;
-  left:0;
-  right:0;
-  bottom:15px;
-  z-index:10;
+/* HERO */
+
+.hero{
+  max-width:1200px;
+  margin:auto;
+  min-height:580px;
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  align-items:center;
+  gap:30px;
+  padding:60px 30px;
+}
+
+.hero h1{
+  font-size:70px;
+  line-height:.95;
+  color:#00cfff;
+  text-shadow:
+    0 0 10px #00cfff,
+    0 0 35px #0077ff;
+}
+
+.hero h1 span{
+  color:white;
+}
+
+.hero h2{
+  margin-top:25px;
+  letter-spacing:7px;
+  color:#9db4c8;
+  font-size:18px;
+}
+
+.hero p{
+  margin-top:25px;
+  max-width:520px;
+  color:#b9c9d8;
+  line-height:1.8;
+  font-size:17px;
+}
+
+.buttons{
+  margin-top:30px;
+  display:flex;
+  gap:15px;
+  flex-wrap:wrap;
+}
+
+.btn{
+  display:inline-block;
+  padding:15px 25px;
+  border-radius:12px;
+  text-decoration:none;
+  font-weight:bold;
+  color:white;
+  background:linear-gradient(90deg,#007cff,#00cfff);
+  box-shadow:0 0 20px rgba(0,180,255,.5);
+}
+
+.btn.secondary{
+  background:transparent;
+  border:1px solid #008cff;
+}
+
+/* LOGO HERO */
+
+.heroLogo{
+  display:flex;
+  align-items:center;
+  justify-content:center;
+}
+
+.crownLogo{
+  width:320px;
+  height:320px;
+  border-radius:55px;
+  border:2px solid #008cff;
+  background:
+    radial-gradient(circle,#0b3f76,#020611 65%);
+  box-shadow:
+    0 0 30px #0077ff,
+    inset 0 0 40px rgba(0,180,255,.35);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  flex-direction:column;
+  position:relative;
+}
+
+.crown{
+  font-size:85px;
+  color:#00d9ff;
+  filter:drop-shadow(0 0 15px #00d9ff);
+}
+
+.crownLogo strong{
+  font-size:50px;
+  color:#00eaff;
+  text-shadow:0 0 15px #00eaff;
+}
+
+.crownLogo small{
+  font-size:22px;
+  letter-spacing:5px;
+}
+
+/* SECTION */
+
+.section{
+  max-width:1200px;
+  margin:auto;
+  padding:60px 25px;
+}
+
+.title{
+  text-align:center;
+  margin-bottom:40px;
+}
+
+.title h2{
+  font-size:35px;
+  text-shadow:0 0 15px #00aaff;
+}
+
+.title div{
+  width:60px;
+  height:3px;
+  background:#00cfff;
+  margin:12px auto;
+  box-shadow:0 0 10px #00cfff;
+}
+
+/* PRODUCTS */
+
+.products{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:22px;
+}
+
+.card{
+  background:linear-gradient(145deg,#061329,#020611);
+  border:1px solid #07518a;
+  border-radius:18px;
+  padding:28px;
+  box-shadow:0 0 20px rgba(0,100,200,.18);
+  transition:.3s;
+}
+
+.card:hover{
+  transform:translateY(-8px);
+  box-shadow:0 0 30px rgba(0,170,255,.4);
+}
+
+.card h3{
+  font-size:25px;
+  color:#00cfff;
+  margin-bottom:20px;
+}
+
+.card.fluorite{
+  border-color:#8c38ff;
+}
+
+.card.fluorite h3{
+  color:#c65cff;
+}
+
+.card.king{
+  border-color:#d49b00;
+}
+
+.card.king h3{
+  color:#ffd000;
+}
+
+.price{
   display:flex;
   justify-content:space-between;
-  padding:0 15px;
+  padding:12px 0;
+  border-bottom:1px solid #17304c;
+  color:#dbe8f3;
 }
 
-.playerControls{
-  display:flex;
-  gap:8px;
-}
-
-.control{
-  width:62px;
-  height:62px;
-  border-radius:50%;
-  display:flex;
-  justify-content:center;
-  align-items:center;
-  border:2px solid #00cfff;
-  background:rgba(0,170,255,.2);
-  font-size:25px;
-  font-weight:bold;
-}
-
-.jump{
-  border-color:#00ff9d;
-  background:rgba(0,255,157,.15);
-}
-
-#finishScreen h1{
-  font-size:42px;
-  color:#ffd700;
-  text-shadow:0 0 20px #ffd700;
-  margin-bottom:15px;
-}
-
-.info{
-  font-size:20px;
-  margin:8px;
-}
-
-.smallBtn{
-  padding:13px 25px;
-  margin:6px;
-  border:0;
-  border-radius:12px;
-  background:#00aaff;
+.price strong{
   color:white;
-  font-size:17px;
+}
+
+.buy{
+  display:block;
+  text-align:center;
+  margin-top:22px;
+  padding:13px;
+  border-radius:10px;
+  background:#006eea;
+  color:white;
+  text-decoration:none;
   font-weight:bold;
+}
+
+.fluorite .buy{
+  background:#651dcc;
+}
+
+.king .buy{
+  background:#a87500;
+}
+
+/* FEATURES */
+
+.features{
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:15px;
+}
+
+.feature{
+  border:1px solid #073e68;
+  background:#041022;
+  padding:25px 15px;
+  border-radius:15px;
+  text-align:center;
+}
+
+.featureIcon{
+  font-size:35px;
+  margin-bottom:12px;
+}
+
+.feature h3{
+  margin-bottom:7px;
+}
+
+.feature p{
+  color:#8fa6ba;
+}
+
+/* CONTACT */
+
+.contactSection{
+  text-align:center;
+  padding:70px 20px;
+}
+
+.phone{
+  display:inline-block;
+  margin-top:20px;
+  padding:17px 28px;
+  border:2px solid #00d9ff;
+  border-radius:14px;
+  color:#00eaff;
+  text-decoration:none;
+  font-size:22px;
+  font-weight:bold;
+  box-shadow:0 0 20px rgba(0,200,255,.4);
+}
+
+/* FOOTER */
+
+footer{
+  text-align:center;
+  padding:30px;
+  border-top:1px solid #07355c;
+  color:#667d91;
+}
+
+/* MOBILE */
+
+@media(max-width:850px){
+
+  header{
+    padding:12px 15px;
+  }
+
+  nav{
+    display:none;
+  }
+
+  .contact{
+    font-size:12px;
+    padding:8px;
+  }
+
+  .hero{
+    grid-template-columns:1fr;
+    text-align:center;
+    padding:50px 20px;
+  }
+
+  .hero h1{
+    font-size:52px;
+  }
+
+  .hero p{
+    margin-left:auto;
+    margin-right:auto;
+  }
+
+  .buttons{
+    justify-content:center;
+  }
+
+  .crownLogo{
+    width:260px;
+    height:260px;
+  }
+
+  .products{
+    grid-template-columns:1fr;
+  }
+
+  .features{
+    grid-template-columns:1fr 1fr;
+  }
+
+}
+
+@media(max-width:450px){
+
+  .features{
+    grid-template-columns:1fr;
+  }
+
+  .hero h1{
+    font-size:45px;
+  }
+
+  .logoText{
+    font-size:18px;
+  }
+
 }
 </style>
 </head>
 
 <body>
 
-<canvas id="game"></canvas>
+<header>
 
-<!-- MENU -->
-<div id="menu" class="screen">
+  <div class="logoBox">
 
-  <div class="logo">ACHRAF_NAPOLI</div>
+    <div class="logo">♛</div>
 
-  <div class="subtitle">PARTY BATTLE</div>
+    <div class="logoText">
+      <span>DRIP</span> CLIENT
+    </div>
 
-  <button class="menuBtn" id="play2">
-    👥 PLAY 2 PLAYERS
-  </button>
-
-  <button class="menuBtn" id="play3">
-    👥 PLAY 3 PLAYERS
-  </button>
-
-  <button class="menuBtn" id="play4">
-    👥 PLAY 4 PLAYERS
-  </button>
-
-</div>
-
-<!-- HUD -->
-<div id="hud" class="hidden">
-
-  <div id="score1">🔵 P1: 0</div>
-  <div id="score2">🔴 P2: 0</div>
-  <div id="score3">🟢 P3: 0</div>
-  <div id="score4">🟡 P4: 0</div>
-
-</div>
-
-<div id="stage" class="hidden">
-  STAGE 1
-</div>
-
-<!-- CONTROLS -->
-<div id="controls" class="hidden">
-
-  <div class="playerControls">
-    <div class="control" id="left">◀</div>
-    <div class="control" id="right">▶</div>
-    <div class="control jump" id="jump">⬆</div>
   </div>
 
-</div>
+  <nav>
+    <a href="#home">HOME</a>
+    <a href="#products">PRODUCTS</a>
+    <a href="#features">FEATURES</a>
+    <a href="#contact">CONTACT</a>
+  </nav>
 
-<!-- FINISH -->
-<div id="finishScreen" class="screen hidden">
+  <a class="contact" href="tel:+212763556489">
+    📞 +212 763-556489
+  </a>
 
-  <h1>🏆 WINNER!</h1>
+</header>
 
-  <div class="info" id="winner"></div>
-  <div class="info" id="scores"></div>
 
-  <button class="smallBtn" id="nextStage">
-    ▶ NEXT STAGE
-  </button>
+<!-- HERO -->
 
-  <button class="smallBtn" id="backMenu">
-    🏠 MENU
-  </button>
+<section class="hero" id="home">
 
-</div>
+  <div>
 
-<script>
+    <h1>
+      DRIP <span>CLIENT</span>
+    </h1>
 
-const canvas=document.getElementById("game");
-const ctx=canvas.getContext("2d");
+    <h2>
+      POWER. STYLE. DOMINATE.
+    </h2>
 
-function resize(){
-  canvas.width=innerWidth;
-  canvas.height=innerHeight;
-}
+    <p>
+      Découvrez DRIP CLIENT, une expérience gaming
+      moderne, rapide et performante.
+      Choisissez votre produit et contactez-nous
+      pour votre commande.
+    </p>
 
-resize();
+    <div class="buttons">
 
-addEventListener("resize",resize);
+      <a href="#products" class="btn">
+        VOIR LES PRODUITS →
+      </a>
 
+      <a href="#contact" class="btn secondary">
+        📞 CONTACT
+      </a>
 
-/* GAME */
+    </div>
 
-let players=[];
-let playerCount=2;
-let currentStage=1;
-let running=false;
+  </div>
 
-let platforms=[];
-let coins=[];
-let finishX=0;
 
+  <div class="heroLogo">
 
-/* CONTROLS */
+    <div class="crownLogo">
 
-const keys={
-  left:false,
-  right:false,
-  jump:false
-};
+      <div class="crown">♛</div>
 
+      <strong>D</strong>
 
-/* START */
+      <small>DRIP CLIENT</small>
 
-function startGame(count){
+    </div>
 
-  playerCount=count;
-  currentStage=1;
+  </div>
 
-  createPlayers();
-  createStage();
+</section>
 
-  document.getElementById("menu")
-    .classList.add("hidden");
 
-  document.getElementById("finishScreen")
-    .classList.add("hidden");
+<!-- PRODUCTS -->
 
-  document.getElementById("hud")
-    .classList.remove("hidden");
+<section class="section" id="products">
 
-  document.getElementById("stage")
-    .classList.remove("hidden");
+  <div class="title">
 
-  document.getElementById("controls")
-    .classList.remove("hidden");
+    <h2>NOS PRODUITS</h2>
 
-  running=true;
+    <div></div>
 
-}
+  </div>
 
 
-/* PLAYERS */
+  <div class="products">
 
-function createPlayers(){
 
-  players=[];
+    <!-- DRIP -->
 
-  const colors=[
-    "#00aaff",
-    "#ff315a",
-    "#00ff9d",
-    "#ffd000"
-  ];
+    <div class="card">
 
-  for(let i=0;i<playerCount;i++){
+      <h3>⚡ DRIP CLIENT</h3>
 
-    players.push({
+      <div class="price">
+        <span>1 JOUR</span>
+        <strong>$2</strong>
+      </div>
 
-      id:i+1,
+      <div class="price">
+        <span>7 JOURS</span>
+        <strong>$5</strong>
+      </div>
 
-      x:80+i*55,
+      <div class="price">
+        <span>30 JOURS</span>
+        <strong>$18</strong>
+      </div>
 
-      y:canvas.height-150,
+      <a
+        class="buy"
+        href="tel:+212763556489"
+      >
+        🛒 ACHETER
+      </a>
 
-      vx:0,
+    </div>
 
-      vy:0,
 
-      size:30,
+    <!-- FLUORITE -->
 
-      speed:4+i*.15,
+    <div class="card fluorite">
 
-      jump:false,
+      <h3>💎 FLUORITE</h3>
 
-      score:0,
+      <div class="price">
+        <span>1 JOUR</span>
+        <strong>$5</strong>
+      </div>
 
-      color:colors[i]
+      <div class="price">
+        <span>7 JOURS</span>
+        <strong>$15</strong>
+      </div>
 
-    });
+      <div class="price">
+        <span>30 JOURS</span>
+        <strong>$25</strong>
+      </div>
 
-  }
+      <a
+        class="buy"
+        href="tel:+212763556489"
+      >
+        🛒 ACHETER
+      </a>
 
-}
+    </div>
 
 
-/* STAGE */
+    <!-- KING -->
 
-function createStage(){
+    <div class="card king">
 
-  platforms=[];
+      <h3>👑 KING CLIENT</h3>
 
-  coins=[];
+      <div class="price">
+        <span>1 JOUR</span>
+        <strong>$10</strong>
+      </div>
 
-  const ground=canvas.height-80;
+      <div class="price">
+        <span>7 JOURS</span>
+        <strong>$25</strong>
+      </div>
 
-  platforms.push({
-    x:0,
-    y:ground,
-    w:canvas.width*3,
-    h:80
-  });
+      <div class="price">
+        <span>30 JOURS</span>
+        <strong>$40</strong>
+      </div>
 
-  const count=7+currentStage*2;
+      <a
+        class="buy"
+        href="tel:+212763556489"
+      >
+        🛒 ACHETER
+      </a>
 
-  for(let i=0;i<count;i++){
+    </div>
 
-    platforms.push({
+  </div>
 
-      x:180+i*220,
+</section>
 
-      y:ground-100-(i%3)*45,
 
-      w:130,
+<!-- FEATURES -->
 
-      h:20
+<section class="section" id="features">
 
-    });
+  <div class="title">
 
-  }
+    <h2>POURQUOI DRIP ?</h2>
 
-  for(let i=0;i<count;i++){
+    <div></div>
 
-    coins.push({
+  </div>
 
-      x:230+i*220,
 
-      y:ground-145-(i%3)*45,
+  <div class="features">
 
-      r:9,
+    <div class="feature">
 
-      taken:false
+      <div class="featureIcon">🛡️</div>
 
-    });
+      <h3>SÉCURISÉ</h3>
 
-  }
+      <p>Service moderne</p>
 
-  finishX=1800+currentStage*500;
+    </div>
 
-  document.getElementById("stage")
-    .textContent="STAGE "+currentStage;
 
-}
+    <div class="feature">
 
+      <div class="featureIcon">🚀</div>
 
-/* PHYSICS */
+      <h3>PERFORMANT</h3>
 
-function update(){
+      <p>Rapide et fluide</p>
 
-  if(!running)return;
+    </div>
 
-  const ground=canvas.height-80;
 
-  players.forEach((p,index)=>{
+    <div class="feature">
 
-    p.vy+=0.7;
+      <div class="featureIcon">⚡</div>
 
-    p.x+=p.vx;
+      <h3>RAPIDE</h3>
 
-    p.y+=p.vy;
+      <p>Activation rapide</p>
 
-    p.vx*=0.82;
+    </div>
 
 
-    /* Shared controls for first player */
+    <div class="feature">
 
-    if(index===0){
+      <div class="featureIcon">🎧</div>
 
-      if(keys.left)
-        p.vx=-p.speed;
+      <h3>SUPPORT</h3>
 
-      if(keys.right)
-        p.vx=p.speed;
+      <p>Contact direct</p>
 
-      if(keys.jump && !p.jump){
+    </div>
 
-        p.vy=-12;
+  </div>
 
-        p.jump=true;
+</section>
 
-      }
 
-    }
+<!-- CONTACT -->
 
+<section class="contactSection" id="contact">
 
-    /* Ground */
+  <div class="title">
 
-    if(p.y+p.size/2>=ground){
+    <h2>CONTACTEZ-NOUS</h2>
 
-      p.y=ground-p.size/2;
+    <div></div>
 
-      p.vy=0;
+  </div>
 
-      p.jump=false;
+  <p>
+    Pour commander ou demander des informations :
+  </p>
 
-    }
+  <a
+    class="phone"
+    href="tel:+212763556489"
+  >
+    📞 +212 763-556489
+  </a>
 
+</section>
 
-    /* Platforms */
 
-    platforms.forEach(pl=>{
+<footer>
 
-      if(
+  © 2026 DRIP CLIENT — Tous droits réservés.
 
-        p.x>pl.x &&
-        p.x<pl.x+pl.w &&
-        p.y+p.size/2>=pl.y &&
-        p.y+p.size/2<=pl.y+20 &&
-        p.vy>=0
+</footer>
 
-      ){
-
-        p.y=pl.y-p.size/2;
-
-        p.vy=0;
-
-        p.jump=false;
-
-      }
-
-    });
-
-
-    /* Coins */
-
-    coins.forEach(c=>{
-
-      if(c.taken)return;
-
-      const dx=p.x-c.x;
-      const dy=p.y-c.y;
-
-      if(Math.sqrt(dx*dx+dy*dy)<28){
-
-        c.taken=true;
-
-        p.score+=10;
-
-      }
-
-    });
-
-
-    /* Finish */
-
-    if(p.x>=finishX){
-
-      finishStage(p);
-
-    }
-
-  });
-
-  updateHUD();
-
-}
-
-
-/* FINISH */
-
-function finishStage(player){
-
-  running=false;
-
-  document.getElementById("finishScreen")
-    .classList.remove("hidden");
-
-  document.getElementById("hud")
-    .classList.add("hidden");
-
-  document.getElementById("stage")
-    .classList.add("hidden");
-
-  document.getElementById("controls")
-    .classList.add("hidden");
-
-  document.getElementById("winner")
-    .textContent=
-      "PLAYER "+player.id+" reached the finish!";
-
-  document.getElementById("scores")
-    .textContent=
-      players.map(p=>"P"+p.id+": "+p.score).join(" • ");
-
-}
-
-
-/* HUD */
-
-function updateHUD(){
-
-  for(let i=0;i<4;i++){
-
-    const el=document.getElementById(
-      "score"+(i+1)
-    );
-
-    if(i<playerCount){
-
-      el.style.display="block";
-
-      el.textContent=
-        "P"+(i+1)+": "+
-        players[i].score;
-
-    }else{
-
-      el.style.display="none";
-
-    }
-
-  }
-
-}
-
-
-/* DRAW */
-
-function draw(){
-
-  ctx.clearRect(
-    0,
-    0,
-    canvas.width,
-    canvas.height
-  );
-
-
-  /* background */
-
-  ctx.fillStyle="#080b18";
-
-  ctx.fillRect(
-    0,
-    0,
-    canvas.width,
-    canvas.height
-  );
-
-
-  /* stars */
-
-  for(let i=0;i<80;i++){
-
-    const x=(i*97)%canvas.width;
-
-    const y=(i*53)%canvas.height;
-
-    ctx.fillStyle="rgba(255,255,255,.5)";
-
-    ctx.fillRect(x,y,2,2);
-
-  }
-
-
-  /* camera */
-
-  let cameraX=0;
-
-  if(players[0])
-    cameraX=Math.max(
-      0,
-      players[0].x-180
-    );
-
-
-  ctx.save();
-
-  ctx.translate(-cameraX,0);
-
-
-  /* platforms */
-
-  platforms.forEach(pl=>{
-
-    ctx.fillStyle="#17315b";
-
-    ctx.fillRect(
-      pl.x,
-      pl.y,
-      pl.w,
-      pl.h
-    );
-
-  });
-
-
-  /* coins */
-
-  coins.forEach(c=>{
-
-    if(c.taken)return;
-
-    ctx.fillStyle="#ffd700";
-
-    ctx.shadowBlur=12;
-    ctx.shadowColor="#ffd700";
-
-    ctx.beginPath();
-
-    ctx.arc(
-      c.x,
-      c.y,
-      c.r,
-      0,
-      Math.PI*2
-    );
-
-    ctx.fill();
-
-    ctx.shadowBlur=0;
-
-  });
-
-
-  /* finish */
-
-  ctx.fillStyle="#00ff9d";
-
-  ctx.fillRect(
-    finishX,
-    canvas.height-220,
-    10,
-    140
-  );
-
-
-  ctx.font="bold 20px Arial";
-
-  ctx.fillText(
-    "FINISH",
-    finishX-25,
-    canvas.height-235
-  );
-
-
-  /* players */
-
-  players.forEach(p=>{
-
-    ctx.save();
-
-    ctx.translate(
-      p.x,
-      p.y
-    );
-
-    ctx.fillStyle=p.color;
-
-    ctx.shadowBlur=15;
-    ctx.shadowColor=p.color;
-
-    ctx.beginPath();
-
-    ctx.arc(
-      0,
-      0,
-      p.size/2,
-      0,
-      Math.PI*2
-    );
-
-    ctx.fill();
-
-    ctx.shadowBlur=0;
-
-    ctx.fillStyle="#fff";
-
-    ctx.font="bold 13px Arial";
-
-    ctx.textAlign="center";
-
-    ctx.fillText(
-      "P"+p.id,
-      0,
-      5
-    );
-
-    ctx.restore();
-
-  });
-
-
-  ctx.restore();
-
-}
-
-
-/* NEXT STAGE */
-
-document.getElementById(
-  "nextStage"
-).onclick=()=>{
-
-  currentStage++;
-
-  createPlayers();
-
-  createStage();
-
-  document.getElementById("finishScreen")
-    .classList.add("hidden");
-
-  document.getElementById("hud")
-    .classList.remove("hidden");
-
-  document.getElementById("stage")
-    .classList.remove("hidden");
-
-  document.getElementById("controls")
-    .classList.remove("hidden");
-
-  running=true;
-
-};
-
-
-/* MENU */
-
-document.getElementById(
-  "backMenu"
-).onclick=()=>{
-
-  document.getElementById("finishScreen")
-    .classList.add("hidden");
-
-  document.getElementById("menu")
-    .classList.remove("hidden");
-
-};
-
-
-/* MENU BUTTONS */
-
-document.getElementById("play2")
-  .onclick=()=>startGame(2);
-
-document.getElementById("play3")
-  .onclick=()=>startGame(3);
-
-document.getElementById("play4")
-  .onclick=()=>startGame(4);
-
-
-/* TOUCH */
-
-function hold(id,key){
-
-  const el=document.getElementById(id);
-
-  el.addEventListener(
-    "touchstart",
-    e=>{
-      e.preventDefault();
-      keys[key]=true;
-    }
-  );
-
-  el.addEventListener(
-    "touchend",
-    e=>{
-      e.preventDefault();
-      keys[key]=false;
-    }
-  );
-
-  el.addEventListener(
-    "touchcancel",
-    ()=>{
-      keys[key]=false;
-    }
-  );
-
-  el.addEventListener(
-    "mousedown",
-    ()=>{
-      keys[key]=true;
-    }
-  );
-
-  el.addEventListener(
-    "mouseup",
-    ()=>{
-      keys[key]=false;
-    }
-  );
-
-}
-
-hold("left","left");
-hold("right","right");
-hold("jump","jump");
-
-
-/* KEYBOARD */
-
-document.addEventListener(
-  "keydown",
-  e=>{
-
-    if(e.key==="ArrowLeft")
-      keys.left=true;
-
-    if(e.key==="ArrowRight")
-      keys.right=true;
-
-    if(
-      e.key==="ArrowUp" ||
-      e.code==="Space"
-    )
-      keys.jump=true;
-
-  }
-);
-
-document.addEventListener(
-  "keyup",
-  e=>{
-
-    if(e.key==="ArrowLeft")
-      keys.left=false;
-
-    if(e.key==="ArrowRight")
-      keys.right=false;
-
-    if(
-      e.key==="ArrowUp" ||
-      e.code==="Space"
-    )
-      keys.jump=false;
-
-  }
-);
-
-
-/* LOOP */
-
-function loop(){
-
-  update();
-
-  draw();
-
-  requestAnimationFrame(loop);
-
-}
-
-loop();
-
-</script>
 
 </body>
 </html>
