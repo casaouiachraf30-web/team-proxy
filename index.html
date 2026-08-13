@@ -1,625 +1,175 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-  <title>GREEN CHEATS | Gaming Store</title>
-  <meta name="description" content="GREEN CHEATS - Premium gaming digital store">
-
-  <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-      font-family: Arial, Helvetica, sans-serif;
-    }
-
-    body {
-      background: #050805;
-      color: #fff;
-      min-height: 100vh;
-    }
-
-    a {
-      text-decoration: none;
-      color: inherit;
-    }
-
-    /* HEADER */
-    header {
-      position: sticky;
-      top: 0;
-      z-index: 1000;
-      background: rgba(5, 8, 5, 0.95);
-      border-bottom: 1px solid #173b1b;
-      backdrop-filter: blur(10px);
-    }
-
-    .nav {
-      max-width: 1150px;
-      margin: auto;
-      padding: 16px 20px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-    }
-
-    .logo {
-      font-size: 24px;
-      font-weight: 900;
-      letter-spacing: 1px;
-    }
-
-    .logo span {
-      color: #35ff62;
-    }
-
-    nav a {
-      margin-left: 22px;
-      color: #bbb;
-      transition: .3s;
-    }
-
-    nav a:hover {
-      color: #35ff62;
-    }
-
-    /* HERO */
-    .hero {
-      max-width: 1150px;
-      margin: auto;
-      padding: 90px 20px 70px;
-      text-align: center;
-    }
-
-    .badge {
-      display: inline-block;
-      color: #35ff62;
-      border: 1px solid #1d762d;
-      background: rgba(53, 255, 98, .07);
-      padding: 8px 15px;
-      border-radius: 30px;
-      margin-bottom: 20px;
-      font-size: 13px;
-    }
-
-    .hero h1 {
-      font-size: clamp(45px, 9vw, 85px);
-      line-height: 1;
-      font-weight: 1000;
-    }
-
-    .hero h1 span {
-      color: #35ff62;
-      text-shadow: 0 0 30px rgba(53, 255, 98, .3);
-    }
-
-    .hero p {
-      max-width: 650px;
-      margin: 25px auto;
-      color: #aaa;
-      line-height: 1.7;
-      font-size: 17px;
-    }
-
-    .buttons {
-      display: flex;
-      justify-content: center;
-      gap: 12px;
-      flex-wrap: wrap;
-      margin-top: 28px;
-    }
-
-    .btn {
-      display: inline-block;
-      padding: 14px 25px;
-      border-radius: 10px;
-      font-weight: bold;
-      transition: .3s;
-      cursor: pointer;
-    }
-
-    .btn-green {
-      background: #35ff62;
-      color: #031006;
-      box-shadow: 0 0 25px rgba(53, 255, 98, .2);
-    }
-
-    .btn-green:hover {
-      transform: translateY(-3px);
-      box-shadow: 0 0 35px rgba(53, 255, 98, .35);
-    }
-
-    .btn-dark {
-      border: 1px solid #254629;
-      background: #0b100b;
-      color: #fff;
-    }
-
-    .btn-dark:hover {
-      border-color: #35ff62;
-    }
-
-    /* STATS */
-    .stats {
-      max-width: 900px;
-      margin: 0 auto 70px;
-      padding: 0 20px;
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 15px;
-    }
-
-    .stat {
-      background: #0a100a;
-      border: 1px solid #162d19;
-      border-radius: 15px;
-      padding: 25px;
-      text-align: center;
-    }
-
-    .stat strong {
-      display: block;
-      color: #35ff62;
-      font-size: 28px;
-      margin-bottom: 5px;
-    }
-
-    .stat small {
-      color: #888;
-    }
-
-    /* PRODUCTS */
-    .section {
-      max-width: 1150px;
-      margin: auto;
-      padding: 30px 20px 80px;
-    }
-
-    .section-title {
-      text-align: center;
-      margin-bottom: 40px;
-    }
-
-    .section-title h2 {
-      font-size: 38px;
-    }
-
-    .section-title span {
-      color: #35ff62;
-    }
-
-    .section-title p {
-      color: #888;
-      margin-top: 10px;
-    }
-
-    .products {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 20px;
-    }
-
-    .product {
-      position: relative;
-      overflow: hidden;
-      background: linear-gradient(145deg, #0d140e, #080b08);
-      border: 1px solid #1b3520;
-      border-radius: 18px;
-      padding: 25px;
-      transition: .3s;
-    }
-
-    .product:hover {
-      transform: translateY(-7px);
-      border-color: #35ff62;
-      box-shadow: 0 15px 40px rgba(0,0,0,.4);
-    }
-
-    .product-icon {
-      height: 130px;
-      border-radius: 13px;
-      background:
-        radial-gradient(circle at center, rgba(53,255,98,.2), transparent 55%),
-        #060906;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      font-size: 55px;
-      margin-bottom: 20px;
-    }
-
-    .tag {
-      display: inline-block;
-      font-size: 11px;
-      color: #35ff62;
-      background: rgba(53,255,98,.08);
-      border: 1px solid #205f2b;
-      padding: 5px 9px;
-      border-radius: 20px;
-      margin-bottom: 10px;
-    }
-
-    .product h3 {
-      font-size: 21px;
-      margin-bottom: 9px;
-    }
-
-    .product p {
-      color: #888;
-      font-size: 14px;
-      line-height: 1.6;
-      min-height: 45px;
-    }
-
-    .price {
-      font-size: 27px;
-      color: #35ff62;
-      font-weight: 900;
-      margin: 20px 0;
-    }
-
-    .buy {
-      display: block;
-      width: 100%;
-      text-align: center;
-      padding: 13px;
-      border-radius: 9px;
-      background: #35ff62;
-      color: #031006;
-      font-weight: bold;
-      transition: .3s;
-    }
-
-    .buy:hover {
-      filter: brightness(1.1);
-    }
-
-    /* FEATURES */
-    .features {
-      max-width: 1150px;
-      margin: auto;
-      padding: 20px 20px 80px;
-    }
-
-    .feature-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 18px;
-    }
-
-    .feature {
-      padding: 25px;
-      background: #090e09;
-      border: 1px solid #162d19;
-      border-radius: 15px;
-    }
-
-    .feature-icon {
-      font-size: 30px;
-      margin-bottom: 15px;
-    }
-
-    .feature h3 {
-      margin-bottom: 8px;
-    }
-
-    .feature p {
-      color: #888;
-      line-height: 1.6;
-      font-size: 14px;
-    }
-
-    /* CTA */
-    .cta {
-      max-width: 900px;
-      margin: 20px auto 80px;
-      padding: 55px 25px;
-      text-align: center;
-      border: 1px solid #1c5727;
-      border-radius: 22px;
-      background:
-        radial-gradient(circle at center, rgba(53,255,98,.12), transparent 60%),
-        #080d08;
-    }
-
-    .cta h2 {
-      font-size: 35px;
-      margin-bottom: 12px;
-    }
-
-    .cta p {
-      color: #888;
-      margin-bottom: 25px;
-    }
-
-    /* FOOTER */
-    footer {
-      border-top: 1px solid #142716;
-      background: #040604;
-      padding: 35px 20px;
-      text-align: center;
-      color: #777;
-    }
-
-    footer strong {
-      color: #35ff62;
-    }
-
-    .social {
-      margin-top: 15px;
-    }
-
-    .social a {
-      margin: 0 8px;
-      color: #aaa;
-    }
-
-    .social a:hover {
-      color: #35ff62;
-    }
-
-    /* MOBILE */
-    @media (max-width: 800px) {
-      nav {
-        display: none;
-      }
-
-      .stats,
-      .products,
-      .feature-grid {
-        grid-template-columns: 1fr;
-      }
-
-      .hero {
-        padding-top: 65px;
-      }
-
-      .hero p {
-        font-size: 15px;
-      }
-
-      .section-title h2 {
-        font-size: 30px;
-      }
-
-      .stat {
-        padding: 20px;
-      }
-    }
-  </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>GREEN CHEATS | Premium Gaming Store</title>
+<meta name="description" content="GREEN CHEATS - Premium gaming digital store">
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:Arial,Helvetica,sans-serif;background:#030603;color:#fff;overflow-x:hidden}
+a{text-decoration:none;color:inherit}
+:root{--green:#39ff63;--dark:#071007;--line:#173a1d;--muted:#8d9890}
+body:before{content:"";position:fixed;inset:0;pointer-events:none;background:radial-gradient(circle at 50% 0%,rgba(57,255,99,.09),transparent 35%);z-index:-1}
+header{position:sticky;top:0;z-index:50;background:rgba(3,6,3,.88);backdrop-filter:blur(14px);border-bottom:1px solid var(--line)}
+.nav{max-width:1180px;margin:auto;padding:12px 18px;display:flex;align-items:center;justify-content:space-between}
+.brand{display:flex;align-items:center;gap:10px;font-weight:900;letter-spacing:1px}
+.brand img{width:46px;height:46px;object-fit:cover;border-radius:50%;border:1px solid #275f31}
+.brand span{color:var(--green)}
+.links{display:flex;gap:24px;color:#b9c1ba;font-weight:700;font-size:14px}
+.links a:hover{color:var(--green)}
+.menu{display:none;background:none;border:1px solid var(--line);color:#fff;border-radius:9px;padding:9px 12px;font-size:20px}
+.hero{max-width:1180px;margin:auto;padding:70px 18px 55px;display:grid;grid-template-columns:1.1fr .9fr;gap:40px;align-items:center}
+.badge{display:inline-block;border:1px solid #256b32;background:rgba(57,255,99,.07);color:var(--green);padding:8px 13px;border-radius:99px;font-size:12px;font-weight:900;margin-bottom:18px}
+h1{font-size:clamp(48px,8vw,88px);line-height:.9;letter-spacing:-4px}
+h1 span{color:var(--green);text-shadow:0 0 35px rgba(57,255,99,.25)}
+.hero p{color:var(--muted);font-size:17px;line-height:1.7;max-width:650px;margin:22px 0}
+.actions{display:flex;gap:12px;flex-wrap:wrap}
+.btn{display:inline-flex;align-items:center;justify-content:center;padding:14px 20px;border-radius:11px;font-weight:900;transition:.25s}
+.btn.green{background:var(--green);color:#031006;box-shadow:0 0 25px rgba(57,255,99,.18)}
+.btn.green:hover{transform:translateY(-3px);box-shadow:0 0 35px rgba(57,255,99,.3)}
+.btn.dark{border:1px solid #254c2b;background:#091009}
+.btn.dark:hover{border-color:var(--green)}
+.hero-logo{display:flex;justify-content:center}
+.hero-logo img{width:min(430px,90%);border-radius:28px;filter:drop-shadow(0 0 35px rgba(57,255,99,.18));animation:float 5s ease-in-out infinite}
+@keyframes float{50%{transform:translateY(-8px)}}
+.stats{max-width:1000px;margin:0 auto 65px;padding:0 18px;display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+.stat{background:linear-gradient(145deg,#0a120a,#060906);border:1px solid var(--line);border-radius:16px;padding:22px;text-align:center}
+.stat strong{display:block;color:var(--green);font-size:27px;margin-bottom:5px}.stat small{color:#7e897f}
+.section{max-width:1180px;margin:auto;padding:35px 18px 75px}
+.title{text-align:center;margin-bottom:34px}.title h2{font-size:38px}.title h2 span{color:var(--green)}.title p{color:var(--muted);margin-top:9px}
+.toolbar{display:flex;gap:10px;justify-content:space-between;flex-wrap:wrap;margin-bottom:22px}
+.search{flex:1;min-width:220px;background:#080d08;border:1px solid var(--line);color:#fff;border-radius:10px;padding:13px 15px;outline:none}
+.search:focus{border-color:var(--green)}
+.filters{display:flex;gap:8px}.filter{border:1px solid var(--line);background:#080d08;color:#bbb;padding:11px 13px;border-radius:9px;cursor:pointer}.filter.active,.filter:hover{background:rgba(57,255,99,.1);color:var(--green);border-color:#286c34}
+.products{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+.product{background:linear-gradient(145deg,#0b130b,#060906);border:1px solid var(--line);border-radius:18px;padding:20px;transition:.25s;position:relative}
+.product:hover{transform:translateY(-5px);border-color:#2b7938}
+.product .icon{height:145px;border-radius:13px;background:radial-gradient(circle,rgba(57,255,99,.18),transparent 58%),#050805;display:flex;align-items:center;justify-content:center;font-size:58px;margin-bottom:18px}
+.tag{color:var(--green);font-size:11px;border:1px solid #256b32;background:rgba(57,255,99,.06);padding:5px 9px;border-radius:99px;display:inline-block}
+.product h3{margin:12px 0 8px;font-size:21px}.product p{color:#879087;line-height:1.55;font-size:14px;min-height:44px}
+.price{font-size:27px;color:var(--green);font-weight:900;margin:18px 0}.buy{display:block;text-align:center;background:var(--green);color:#031006;padding:13px;border-radius:10px;font-weight:900}
+.buy:hover{filter:brightness(1.08)}
+.features{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}.feature{padding:23px;border:1px solid var(--line);border-radius:16px;background:#080d08}.feature .ico{font-size:28px;margin-bottom:12px}.feature p{color:#879087;line-height:1.6;margin-top:7px;font-size:14px}
+.contact{max-width:950px;margin:0 auto 75px;padding:24px;display:grid;grid-template-columns:1fr 1fr;gap:24px;align-items:center;background:linear-gradient(145deg,#0a120a,#050805);border:1px solid #23672e;border-radius:22px;box-shadow:0 0 35px rgba(57,255,99,.08)}
+.contact img{width:100%;border-radius:15px;display:block}.contact h2{font-size:32px}.contact p{color:var(--muted);margin:10px 0 20px}.online{color:var(--green);font-weight:900;font-size:12px}.number{display:inline-block;background:var(--green);color:#031006;padding:13px 16px;border-radius:10px;font-weight:900}
+.faq{max-width:850px;margin:auto}.faq details{background:#080d08;border:1px solid var(--line);border-radius:12px;padding:16px;margin:10px 0}.faq summary{cursor:pointer;font-weight:800}.faq p{color:#879087;line-height:1.6;margin-top:12px}
+footer{border-top:1px solid var(--line);padding:32px 18px;text-align:center;color:#707a72}footer strong{color:var(--green)}
+.cart{position:fixed;right:18px;bottom:18px;z-index:60;background:var(--green);color:#031006;border:0;border-radius:99px;padding:14px 18px;font-weight:900;box-shadow:0 10px 35px rgba(0,0,0,.4);cursor:pointer}
+#toast{position:fixed;left:50%;bottom:82px;transform:translateX(-50%) translateY(20px);background:#101810;border:1px solid #2a7537;color:#fff;padding:12px 16px;border-radius:10px;opacity:0;pointer-events:none;transition:.3s;z-index:100}.show{opacity:1!important;transform:translateX(-50%) translateY(0)!important}
+@media(max-width:850px){.hero{grid-template-columns:1fr;text-align:center}.hero p{margin:20px auto}.actions{justify-content:center}.products,.features{grid-template-columns:1fr 1fr}.hero-logo{order:-1}.hero-logo img{width:min(330px,78vw)}}
+@media(max-width:600px){.links{display:none;position:absolute;top:70px;left:12px;right:12px;background:#071007;border:1px solid var(--line);padding:14px;border-radius:12px;flex-direction:column;gap:14px}.links.open{display:flex}.menu{display:block}.stats,.products,.features{grid-template-columns:1fr}.contact{grid-template-columns:1fr}.title h2{font-size:30px}h1{letter-spacing:-2px}.toolbar{display:block}.filters{margin-top:9px;overflow:auto}.filter{white-space:nowrap}}
+</style>
 </head>
-
 <body>
 
-  <!-- HEADER -->
-  <header>
-    <div class="nav">
-      <div class="logo">GREEN <span>CHEATS</span></div>
-
-      <nav>
-        <a href="#home">Home</a>
-        <a href="#products">Products</a>
-        <a href="#features">Features</a>
-        <a href="#contact">Contact</a>
-      </nav>
-    </div>
-  </header>
-
-
-  <!-- HERO -->
-  <section class="hero" id="home">
-
-    <div class="badge">🟢 PREMIUM GAMING STORE</div>
-
-    <h1>
-      GREEN <span>CHEATS</span>
-    </h1>
-
-    <p>
-      Welcome to Green Cheats — your modern digital gaming store.
-      Discover premium digital products, fast delivery and professional support.
-    </p>
-
-    <div class="buttons">
-      <a href="#products" class="btn btn-green">
-        🛒 View Products
-      </a>
-
-      <a href="#contact" class="btn btn-dark">
-        💬 Contact Us
-      </a>
-    </div>
-
-  </section>
-
-
-  <!-- STATS -->
-  <section class="stats">
-
-    <div class="stat">
-      <strong>24/7</strong>
-      <small>Support</small>
-    </div>
-
-    <div class="stat">
-      <strong>FAST</strong>
-      <small>Delivery</small>
-    </div>
-
-    <div class="stat">
-      <strong>100%</strong>
-      <small>Digital</small>
-    </div>
-
-  </section>
-
-
-  <!-- PRODUCTS -->
-  <section class="section" id="products">
-
-    <div class="section-title">
-      <h2>Our <span>Products</span></h2>
-      <p>Choose the product that fits you.</p>
-    </div>
-
-
-    <div class="products">
-
-      <!-- PRODUCT 1 -->
-      <div class="product">
-
-        <div class="product-icon">🎮</div>
-
-        <span class="tag">POPULAR</span>
-
-        <h3>Gaming Pack</h3>
-
-        <p>
-          Premium digital gaming package with instant delivery.
-        </p>
-
-        <div class="price">$5</div>
-
-        <a
-          class="buy"
-          href="https://wa.me/212774813832?text=Hello%20Green%20Cheats%2C%20I%20want%20Gaming%20Pack"
-          target="_blank">
-          BUY NOW
-        </a>
-
-      </div>
-
-
-      <!-- PRODUCT 2 -->
-      <div class="product">
-
-        <div class="product-icon">⚡</div>
-
-        <span class="tag">BEST VALUE</span>
-
-        <h3>Premium Pack</h3>
-
-        <p>
-          Premium digital package with priority customer support.
-        </p>
-
-        <div class="price">$15</div>
-
-        <a
-          class="buy"
-          href="https://wa.me/212774813832?text=Hello%20Green%20Cheats%2C%20I%20want%20Premium%20Pack"
-          target="_blank">
-          BUY NOW
-        </a>
-
-      </div>
-
-
-      <!-- PRODUCT 3 -->
-      <div class="product">
-
-        <div class="product-icon">👑</div>
-
-        <span class="tag">PREMIUM</span>
-
-        <h3>Ultimate Pack</h3>
-
-        <p>
-          Our top digital package for customers who want the complete experience.
-        </p>
-
-        <div class="price">$25</div>
-
-        <a
-          class="buy"
-          href="https://wa.me/212774813832?text=Hello%20Green%20Cheats%2C%20I%20want%20Ultimate%20Pack"
-          target="_blank">
-          BUY NOW
-        </a>
-
-      </div>
-
-    </div>
-
-  </section>
-
-
-  <!-- FEATURES -->
-  <section class="features" id="features">
-
-    <div class="section-title">
-      <h2>Why <span>Green Cheats?</span></h2>
-      <p>Built for a simple and professional shopping experience.</p>
-    </div>
-
-
-    <div class="feature-grid">
-
-      <div class="feature">
-        <div class="feature-icon">⚡</div>
-        <h3>Fast Delivery</h3>
-        <p>
-          Get your digital order quickly after confirmation.
-        </p>
-      </div>
-
-      <div class="feature">
-        <div class="feature-icon">🔒</div>
-        <h3>Secure Service</h3>
-        <p>
-          Your order information is handled professionally.
-        </p>
-      </div>
-
-      <div class="feature">
-        <div class="feature-icon">💬</div>
-        <h3>Support</h3>
-        <p>
-          Contact our support team whenever you need help.
-        </p>
-      </div>
-
-    </div>
-
-  </section>
-
-
-  <!-- CTA -->
-  <section class="cta" id="contact">
-
-    <h2>Ready to order?</h2>
-
-    <p>
-      Contact Green Cheats and choose your digital product.
-    </p>
-
-    <a
-      class="btn btn-green"
-      href="https://wa.me/212774813832?text=Hello%20Green%20Cheats"
-      target="_blank">
-      💬 WhatsApp
+<header>
+  <div class="nav">
+    <a class="brand" href="#home">
+      <img src="logo.png" alt="GREEN CHEATS logo">
+      <div>GREEN <span>CHEATS</span></div>
     </a>
+    <nav class="links" id="links">
+      <a href="#home">Home</a><a href="#store">Store</a><a href="#features">Features</a><a href="#contact">Contact</a><a href="#faq">FAQ</a>
+    </nav>
+    <button class="menu" onclick="toggleMenu()">☰</button>
+  </div>
+</header>
 
-  </section>
-
-
-  <!-- FOOTER -->
-  <footer>
-
-    <div>
-      © 2026 <strong>GREEN CHEATS</strong>. All rights reserved.
+<main id="home">
+<section class="hero">
+  <div>
+    <div class="badge">🟢 PREMIUM GAMING STORE</div>
+    <h1>GREEN <span>CHEATS</span></h1>
+    <p>Premium digital gaming products with a clean, fast and mobile-friendly shopping experience.</p>
+    <div class="actions">
+      <a class="btn green" href="#store">🛒 View Store</a>
+      <a class="btn dark" href="https://wa.me/212763556489?text=Hello%20GREEN%20CHEATS" target="_blank">💬 WhatsApp</a>
     </div>
+  </div>
+  <div class="hero-logo"><img src="logo.png" alt="GREEN CHEATS"></div>
+</section>
 
-    <div class="social">
-      <a href="#home">Home</a>
-      <a href="#products">Store</a>
-      <a href="#contact">WhatsApp</a>
+<section class="stats">
+  <div class="stat"><strong>24/7</strong><small>Support</small></div>
+  <div class="stat"><strong>FAST</strong><small>Digital Delivery</small></div>
+  <div class="stat"><strong>PRO</strong><small>Gaming Store</small></div>
+</section>
+
+<section class="section" id="store">
+  <div class="title"><h2>Our <span>Products</span></h2><p>Choose your plan and contact us to order.</p></div>
+  <div class="toolbar">
+    <input class="search" id="search" placeholder="🔎 Search products..." oninput="renderProducts()">
+    <div class="filters">
+      <button class="filter active" onclick="setFilter('all',this)">All</button>
+      <button class="filter" onclick="setFilter('android',this)">Android</button>
+      <button class="filter" onclick="setFilter('ios',this)">iOS</button>
     </div>
+  </div>
+  <div class="products" id="products"></div>
+</section>
 
-  </footer>
+<section class="section" id="features">
+  <div class="title"><h2>Why <span>GREEN CHEATS?</span></h2><p>Simple, professional and built for mobile.</p></div>
+  <div class="features">
+    <div class="feature"><div class="ico">⚡</div><h3>Fast Service</h3><p>Quick communication and digital delivery after order confirmation.</p></div>
+    <div class="feature"><div class="ico">📱</div><h3>Mobile Friendly</h3><p>The store is optimized for Android, iPhone and small screens.</p></div>
+    <div class="feature"><div class="ico">💬</div><h3>Direct Support</h3><p>Use WhatsApp to ask questions and confirm your order.</p></div>
+  </div>
+</section>
 
+<section class="contact" id="contact">
+  <img src="contact.png" alt="GREEN CHEATS contact card">
+  <div>
+    <div class="online">✓ ONLINE</div>
+    <h2>Contact GREEN CHEATS</h2>
+    <p>For orders, prices and customer support.</p>
+    <a class="number" href="https://wa.me/212763556489?text=Hello%20GREEN%20CHEATS%2C%20I%20want%20to%20order" target="_blank">💬 +212 763-556489</a>
+  </div>
+</section>
 
+<section class="section" id="faq">
+  <div class="title"><h2>FAQ</h2><p>Quick answers.</p></div>
+  <div class="faq">
+    <details><summary>How do I order?</summary><p>Select a plan and press BUY NOW. WhatsApp will open with a ready message.</p></details>
+    <details><summary>How do I pay?</summary><p>Payment details can be provided directly through WhatsApp after you choose your product.</p></details>
+    <details><summary>Do you provide support?</summary><p>Yes. Contact GREEN CHEATS on WhatsApp for order and product support.</p></details>
+  </div>
+</section>
+</main>
+
+<button class="cart" onclick="showCart()">🛒 Cart <span id="cartCount">0</span></button>
+<div id="toast"></div>
+
+<footer>© 2026 <strong>GREEN CHEATS</strong> — Premium Gaming Store</footer>
+
+<script>
+const products=[
+ {name:"DRIP CLIENT — Day 1",price:"$2",cat:"android",icon:"🎮",desc:"1 day digital plan.",msg:"I want DRIP CLIENT Day 1"},
+ {name:"DRIP CLIENT — Days 7",price:"$5",cat:"android",icon:"⚡",desc:"7 days digital plan.",msg:"I want DRIP CLIENT Days 7"},
+ {name:"DRIP CLIENT — Days 30",price:"$18",cat:"android",icon:"🔥",desc:"30 days digital plan.",msg:"I want DRIP CLIENT Days 30"},
+ {name:"FLUORITE — Day 1",price:"$5",cat:"ios",icon:"💎",desc:"1 day digital plan.",msg:"I want FLUORITE Day 1"},
+ {name:"FLUORITE — Days 7",price:"$15",cat:"ios",icon:"🟣",desc:"7 days digital plan.",msg:"I want FLUORITE Days 7"},
+ {name:"FLUORITE — Days 30",price:"$25",cat:"ios",icon:"👑",desc:"30 days digital plan.",msg:"I want FLUORITE Days 30"}
+];
+let filter="all", cart=0;
+function setFilter(v,el){filter=v;document.querySelectorAll(".filter").forEach(x=>x.classList.remove("active"));el.classList.add("active");renderProducts()}
+function renderProducts(){
+ const q=document.getElementById("search").value.toLowerCase();
+ const box=document.getElementById("products");
+ box.innerHTML=products.filter(p=>(filter==="all"||p.cat===filter)&&p.name.toLowerCase().includes(q)).map(p=>`
+ <article class="product">
+  <div class="icon">${p.icon}</div><span class="tag">${p.cat.toUpperCase()}</span>
+  <h3>${p.name}</h3><p>${p.desc}</p><div class="price">${p.price}</div>
+  <a class="buy" href="https://wa.me/212763556489?text=${encodeURIComponent("Hello GREEN CHEATS, "+p.msg)}" target="_blank" onclick="addCart()">BUY NOW</a>
+ </article>`).join("");
+}
+function addCart(){cart++;document.getElementById("cartCount").textContent=cart;toast("Added to order list ✓")}
+function showCart(){toast(cart?`You selected ${cart} product(s). Complete your order on WhatsApp.`:"Choose a product first.")}
+function toast(t){const x=document.getElementById("toast");x.textContent=t;x.classList.add("show");setTimeout(()=>x.classList.remove("show"),2500)}
+function toggleMenu(){document.getElementById("links").classList.toggle("open")}
+renderProducts();
+</script>
 </body>
 </html>
